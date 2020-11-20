@@ -1,0 +1,36 @@
+.singleTask{
+    border-bottom: solid 2px gray;
+    display: flex;
+    justify-content: flex-start;
+}
+.singleTask p {
+    flex-grow: 1;
+}
+
+.singleTask p span {
+    font-weight: bold;
+}
+
+.singleTask button {  
+    display: block;
+    /*border: none;*/
+    border: solid  1px gray;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    text-align: center;
+    margin: 0 10px;
+    /*font-weight: bold;*/
+    font-size: 25px;
+    background-color: transparent;
+}
+
+button.confirm:hover {
+    background-color: rgb(48, 155, 48);
+}
+
+button.delete:hover {
+    background-color: rgb(240, 72, 72);
+}
+
