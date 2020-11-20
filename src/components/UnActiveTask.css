@@ -1,0 +1,14 @@
+.unActiveTask{
+    border-bottom: solid 2px gray;
+    display: flex;
+    justify-content: flex-start;
+}
+.unActiveTask p:first-child {
+    flex-grow: 1;
+    text-decoration: line-through
+}
+
+.unActiveTask p span {
+    font-weight: bold;
+}
+

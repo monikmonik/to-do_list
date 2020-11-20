@@ -7,7 +7,20 @@ const TasksList = (props) => {
 
     const active = props.tasks.filter(task => task.active);
     const activeTasks = active.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm}/>);
-    const unActiveTasks = props.tasks.filter(task => !task.active).map(task => <UnActiveTask key={task.id} task={task} delete={props.delete} confirm={props.confirm}/>);
+    const unActive = props.tasks.filter(task => !task.active);
+    const unActiveTasks = unActive.map(task => <UnActiveTask key={task.id} task={task} delete={props.delete} confirm={props.confirm}/>);
+
+    const hendleTitleunActiveTasks = () => {
+        if(unActiveTasks.length === 0){
+            return null
+        }else if(unActiveTasks.length === 1){
+            return `Ostatnio wykonane zadanie:`
+        }else if(unActiveTasks.length < 6){
+            return `${unActiveTasks.length} ostatnio wykonane zadania:` 
+        }else if(unActiveTasks.length >= 6){
+            return `6 ostanio wykonanych zadań:`
+        }
+    }
     
     return ( 
         <>
@@ -16,8 +29,8 @@ const TasksList = (props) => {
                 {activeTasks.length > 0 ? activeTasks : <p>Obecnie nie masz nic zaplanowanego.</p>} 
             </div>
             <div className="finishedTasksList">
-                <h3>Ostatnio wykonane (0)</h3>
-                {unActiveTasks}  
+                 <h3>{hendleTitleunActiveTasks()}</h3>
+                {unActiveTasks.length > 0 && unActiveTasks.slice(0,6)}  
         </div>
         </>
      );
