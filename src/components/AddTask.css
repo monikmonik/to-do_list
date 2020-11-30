@@ -1,0 +1,41 @@
+.form {
+    border: solid 5px white;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 3px black;
+}
+
+.form h2 {
+    text-transform: uppercase;
+    margin: 1rem 1.5rem;
+   
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.9rem;
+}
+
+form label {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+
+form button {
+    margin: 1rem 0;
+}
+
+input,
+select,
+textarea,
+button {
+    border: solid 1px white; 
+    border-radius: 4px;
+    box-shadow: 0 0 2px black;
+    background-color: white;
+    padding: 0;
+    color: indigo;
+}
