@@ -32,7 +32,17 @@ class AddTask extends Component {
 
      handleClick = (e) => {
          e.preventDefault();
-       
+         const {title, description, date, group, important} = this.state;
+         const add = this.props.add(title, description, date, group, important);
+         if(add){
+            this.setState ({
+                title:'',
+                description:'',
+                date: this.minDate,
+                group: 'personal',
+                important: false,
+            })
+        }
      }
 
     render() { 
@@ -47,7 +57,7 @@ class AddTask extends Component {
                     <label htmlFor="title"> Tytuł zadania:</label>
                     <input type="text" id="title" value={this.state.title} onChange={this.handleChange}></input>
                     <label htmlFor="description"> Krótki opis:</label>
-                    <textarea id="description" value={this.state.description} onChange={this.handleChange}></textarea>
+                    <textarea id="description" rows="6" value={this.state.description} onChange={this.handleChange}></textarea>
                     <label htmlFor="date"> Do kiedy ma być wykonane:</label>
                     <input type="date" id="date" value={this.state.date} min={this.minDate} max={maxDate} onChange={this.handleChange}></input>
                     <label htmlFor="group">rodzaj zadania </label>

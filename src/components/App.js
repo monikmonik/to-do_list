@@ -4,13 +4,9 @@ import AddTask from './AddTask'
 import TasksList from './TasksList'
 
 class App extends Component {
+  idCounter = 0;
   state = {  
-    tasks:[
-      {id:1, text: 'Posprzątać w domu', date: '2020.11.21',finishDate: null, important: true, type: 'private', active: true},
-      {id:2, text: 'Zrobic zakupy', date: '2020.11.18',finishDate: null, important: false, type: 'private', active: true},
-      {id:3, text: 'Zrobić aplikację to do', date: '2020.11.25',finishDate: null, important: true, type: 'work', active: true},
-      {id:4, text: 'Nauczyć się Angular', date: '2020.12.27',finishDate: null, important: false, type: 'work', active: true},
-    ]
+    tasks:[]
   }
 
   deleteTask = (id) => {
@@ -36,13 +32,31 @@ class App extends Component {
     })
   }
 
+  addTask = (title, description, date, group, important) => {
+    const task = {
+      id: this.idCounter, 
+      title,
+      description,
+      date,
+      finishDate: null, 
+      important,
+      group, 
+      active: true
+    }
+    this.idCounter++;
+    this.setState(prevState => ({
+      tasks: [...prevState.tasks, task]
+    }))
+    return true
+  }
+
   render() { 
     return ( 
       <div className="App">
         <div className="addTask">
-        <AddTask/>
+        <AddTask add={this.addTask}/>
         </div>
-        <div className="tasksList">
+        <div className="tasksListArea">
         <TasksList tasks={this.state.tasks} delete={this.deleteTask} confirm={this.confirmTask}/>
         </div>
       </div>
