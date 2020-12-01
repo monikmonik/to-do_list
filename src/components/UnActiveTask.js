@@ -3,13 +3,13 @@ import './UnActiveTask.css'
 
 const UnActiveTask = (props) => {
 
-    const {id, text, date, finishDate, important} = props.task;
-   
+    const {title, date, finishDate} = props.task;
+    const finishTime = new Date(finishDate).toLocaleString();
 
     return ( 
     <div className="unActiveTask">
-       <p><span>{date} - </span> {text}</p>
-       <p>Wykonano: <span>{finishDate}</span></p>
+       <p><span>{date} - </span> {title}</p>
+       <p>Wykonano: <span>{finishTime}</span></p>
     </div>
      );
 }

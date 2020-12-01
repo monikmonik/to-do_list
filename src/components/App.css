@@ -1,18 +1,19 @@
 .App {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   max-width: 1300px;
-  min-height: 95vh;
-  margin: 20px auto;
+  min-height: 86vh;
+  margin: 1.3rem auto;
+  padding:  2rem 2rem;
   background-color: rgb(218, 221, 226);
   box-shadow: 0 0 10px black;
 }
 
 .addTask {
-  flex-basis: 25%;
+  flex-basis: 28%;
 }
 
-.tasksList {
+.tasksListArea {
   flex-basis: 60%;
 }
 

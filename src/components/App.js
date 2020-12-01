@@ -32,6 +32,22 @@ class App extends Component {
     })
   }
 
+  showDescription = (id) => {
+    console.log('działa');
+    const tasks =  [...this.state.tasks];
+    tasks.forEach(task => {
+      if(task.id !== id){
+        task.visibleDescription = false;
+      }
+      if(task.id === id){
+          task.visibleDescription = !task.visibleDescription;
+      }
+    })
+    this.setState({
+      tasks
+    })
+  }
+
   addTask = (title, description, date, group, important) => {
     const task = {
       id: this.idCounter, 
@@ -41,7 +57,8 @@ class App extends Component {
       finishDate: null, 
       important,
       group, 
-      active: true
+      active: true,
+      visibleDescription: false,
     }
     this.idCounter++;
     this.setState(prevState => ({
@@ -57,7 +74,7 @@ class App extends Component {
         <AddTask add={this.addTask}/>
         </div>
         <div className="tasksListArea">
-        <TasksList tasks={this.state.tasks} delete={this.deleteTask} confirm={this.confirmTask}/>
+        <TasksList tasks={this.state.tasks} delete={this.deleteTask} confirm={this.confirmTask} show={this.showDescription}/>
         </div>
       </div>
      );

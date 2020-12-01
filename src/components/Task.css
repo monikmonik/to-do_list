@@ -1,26 +1,44 @@
 .singleTask{
-    border-bottom: solid 2px gray;
     display: flex;
-    justify-content: flex-start;
-}
-.singleTask p {
-    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0.5rem;
+    border-bottom: dotted 1px gray;
 }
 
-.singleTask p span {
+.singleTask:last-child{
+    margin-bottom: 1.3rem;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+}
+
+.task p {
+    flex-basis: 60%;
+    flex-grow: 1;
+    margin-right: 1.3rem;
+}
+
+.task p span {
     font-weight: bold;
 }
 
-.singleTask button {  
+button.confirm,
+button.delete,
+button.description{  
     border: solid  1px gray;
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    align-self: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-self: flex-start;
     text-align: center;
-    margin: 0 10px;
+    margin: 0.9rem 0.2rem;
+    padding: 0;
     /*font-weight: bold;*/
-    font-size: 25px;
+    font-size: 1.5rem;
     background-color: transparent;
 }
 
@@ -32,3 +50,13 @@ button.delete:hover {
     background-color: rgb(240, 72, 72);
 }
 
+button.description:hover {
+    background-color: rgb(109, 156, 218);
+}
+
+.description {
+    padding: 0.7rem;
+    margin-bottom: 0.6rem;
+   border-radius: 3px;
+    box-shadow: 0 0 3px black;
+}

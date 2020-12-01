@@ -1,11 +1,25 @@
 .unActiveTask{
-    border-bottom: solid 2px gray;
+    border-bottom: dotted 1px gray;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
+    font-size: 0.8rem;
 }
+
+.unActiveTask:last-child{
+    border-bottom: none;
+}
+
+.unActiveTask p:last-child {
+    flex-basis: 30%;
+}
+
 .unActiveTask p:first-child {
+    flex-basis: 50%;
     flex-grow: 1;
-    text-decoration: line-through
+    text-align: justify;
+    margin-right: 1.3rem;
+    text-decoration: line-through;
+    line-height: 1.5;
 }
 
 .unActiveTask p span {

@@ -1,0 +1,28 @@
+.list {
+    min-height: 60vh;
+    padding: 0.3rem 1.3rem;
+    background-color:white;
+    border: none;
+   
+}
+
+.tasksList button{
+    padding: 0.7rem 1.9rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 10px;
+    border: none;
+    background-color:rgb(180, 183, 189);
+}
+
+.tasksList button.active {
+    background-color: white;
+    border-bottom: none;
+}
+
+.confirmTask h4 {
+ text-align: center;
+ text-transform: uppercase;
+ padding-top: 0.3rem;
+}

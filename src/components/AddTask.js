@@ -17,8 +17,6 @@ class AddTask extends Component {
 
         const name = e.target.id;
         const type = e.target.type;
-        console.log(name);
-        console.log(type);
         if (type === 'text' || type === 'textarea' || type === 'select-one' || type === 'date'){
             this.setState({
                 [name]:e.target.value
