@@ -26,6 +26,7 @@ form label {
 
 form button {
     margin: 1rem 0;
+    text-transform: uppercase;
 }
 
 input,

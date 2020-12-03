@@ -6,7 +6,8 @@ import TasksList from './TasksList'
 class App extends Component {
   idCounter = 0;
   state = {  
-    tasks:[]
+    tasks:[],
+    select: 'all',
   }
 
   deleteTask = (id) => {
@@ -67,17 +68,26 @@ class App extends Component {
     return true
   }
 
+  handleTasksFilter = (option) => {
+    this.setState({
+      select: option
+    })
+  }
+
   render() { 
-    return ( 
-      <div className="App">
-        <div className="addTask">
-        <AddTask add={this.addTask}/>
+    
+      return ( 
+        <div className="App">
+          <div className="addTask">
+          <AddTask add={this.addTask}/>
+          </div>
+          <div className="tasksListArea">
+           <TasksList tasks={this.state.tasks} select={this.state.select} filter={this.handleTasksFilter} delete={this.deleteTask} confirm={this.confirmTask} show={this.showDescription}/>
+          </div>
         </div>
-        <div className="tasksListArea">
-        <TasksList tasks={this.state.tasks} delete={this.deleteTask} confirm={this.confirmTask} show={this.showDescription}/>
-        </div>
-      </div>
-     );
+       );
+    
+   
   }
 }
  

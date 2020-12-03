@@ -5,36 +5,43 @@ import UnActiveTask from './UnActiveTask'
 
 const TasksList = (props) => {
 
-    const active = props.tasks.filter(task => task.active);
-    const activeTasks = active.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
-    const unActive = props.tasks.filter(task => !task.active);
-    const unActiveTasks = unActive.map(task => <UnActiveTask key={task.id} task={task} delete={props.delete} confirm={props.confirm}/>);
 
-    const hendleTitleunActiveTasks = () => {
-        if(unActiveTasks.length === 0){
-            return null
-        }else if(unActiveTasks.length === 1){
-            return `Ostatnio wykonane zadanie:`
-        }else if(unActiveTasks.length < 5){
-            return `${unActiveTasks.length} ostatnio wykonane zadania:` 
-        }else if(unActiveTasks.length >= 5){
-            return `5 ostanio wykonanych zadań:`
+    const list = () => {
+        let tasks = props.tasks;
+        if(props.select === 'all'){
+                tasks = tasks.filter(task => task.active);
+                if(tasks.length > 0){
+                    return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
+                } else {
+                    return <div className="blank">Nie masz jeszcze zadan do wykonania</div> 
+                }
+                
+        } else if(props.select === 'personal'){
+            tasks = tasks.filter(task => task.group === 'personal' && task.active);
+            return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
+        } else if(props.select === 'work'){
+            tasks = tasks.filter(task => task.group === 'work' && task.active);
+            return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
+        }else if(props.select === 'done'){
+            tasks = tasks.filter(task => !task.active);
+            tasks.sort((a,b)=> b.finishDate - a.finishDate);
+            return tasks.map(task => <UnActiveTask key={task.id} task={task} delete={props.delete}/>).slice(0,10);
         }
     }
-    
+
+    //let classes = "";
+    //if(props.select === 'all'){
+    // classes += ' active'
+    //} 
+
     return ( 
-        <>
             <div className="tasksList">
-                <button className="active">Wszystkie</button>
-                <button>Osobiste</button>
-                <button>Zawodowe</button>
-                <div className="list">{activeTasks.length > 0 ? activeTasks : <p>Obecnie nie masz nic zaplanowanego.</p>} </div>   
+                <button className = {props.select === 'all' ? 'active': ''} onClick={()=> props.filter('all')}>Wszystkie</button>
+                <button className = {props.select === 'personal' ? 'active': ''} onClick={()=> props.filter('personal')}>Osobiste</button>
+                <button className = {props.select === 'work' ? 'active': ''} onClick={()=> props.filter('work')}>Zawodowe</button>
+                <button className = {props.select === 'done' ? 'active': ''} onClick={()=> props.filter('done')}>Wykonane</button>
+                <div className="list">{list()}</div>
             </div>
-            <div className="confirmTask">
-                <h4>{hendleTitleunActiveTasks()}</h4>
-                {unActiveTasks.length > 0 && unActiveTasks.slice(0,6)}  
-            </div>
-        </>
      );
 }
  

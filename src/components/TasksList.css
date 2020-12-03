@@ -1,9 +1,9 @@
 .list {
-    min-height: 60vh;
+    position: relative;
+    min-height: 80vh;
     padding: 0.3rem 1.3rem;
     background-color:white;
     border: none;
-   
 }
 
 .tasksList button{
@@ -16,13 +16,26 @@
     background-color:rgb(180, 183, 189);
 }
 
+.tasksList button:focus{
+    outline: 0
+}
+
 .tasksList button.active {
     background-color: white;
-    border-bottom: none;
 }
 
 .confirmTask h4 {
- text-align: center;
- text-transform: uppercase;
- padding-top: 0.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 0.3rem;
+}
+
+.blank {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
 }

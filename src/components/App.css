@@ -14,8 +14,10 @@
 }
 
 .tasksListArea {
+  position: relative;
   flex-basis: 60%;
 }
+
 
 
 
