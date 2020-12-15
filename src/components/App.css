@@ -5,7 +5,7 @@
   min-height: 86vh;
   margin: 1.3rem auto;
   padding:  2rem 2rem;
-  background-color: rgb(218, 221, 226);
+  background-color: #2558b1;
   box-shadow: 0 0 10px black;
 }
 
@@ -17,6 +17,8 @@
   position: relative;
   flex-basis: 60%;
 }
+
+
 
 
 

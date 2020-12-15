@@ -1,7 +1,7 @@
 import React from 'react';
 import './TasksList.css';
 import Task from './Task';
-import UnActiveTask from './UnActiveTask'
+import UnActiveTask from './UnActiveTask';
 
 const TasksList = (props) => {
 
@@ -9,13 +9,8 @@ const TasksList = (props) => {
     const list = () => {
         let tasks = props.tasks;
         if(props.select === 'all'){
-                tasks = tasks.filter(task => task.active);
-                if(tasks.length > 0){
-                    return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
-                } else {
-                    return <div className="blank">Nie masz jeszcze zadan do wykonania</div> 
-                }
-                
+            tasks = tasks.filter(task => task.active);   
+            return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
         } else if(props.select === 'personal'){
             tasks = tasks.filter(task => task.group === 'personal' && task.active);
             return tasks.map(task => <Task key={task.id} task={task} delete={props.delete} confirm={props.confirm} show={props.show}/>);
@@ -29,19 +24,14 @@ const TasksList = (props) => {
         }
     }
 
-    //let classes = "";
-    //if(props.select === 'all'){
-    // classes += ' active'
-    //} 
-
     return ( 
-            <div className="tasksList">
-                <button className = {props.select === 'all' ? 'active': ''} onClick={()=> props.filter('all')}>Wszystkie</button>
-                <button className = {props.select === 'personal' ? 'active': ''} onClick={()=> props.filter('personal')}>Osobiste</button>
-                <button className = {props.select === 'work' ? 'active': ''} onClick={()=> props.filter('work')}>Zawodowe</button>
-                <button className = {props.select === 'done' ? 'active': ''} onClick={()=> props.filter('done')}>Wykonane</button>
-                <div className="list">{list()}</div>
-            </div>
+        <div className="tasksList">
+            <button className = {props.select === 'all' ? 'active': ''} onClick={()=> props.filter('all')}>Wszystkie</button>
+            <button className = {props.select === 'personal' ? 'active': ''} onClick={()=> props.filter('personal')}>Osobiste</button>
+            <button className = {props.select === 'work' ? 'active': ''} onClick={()=> props.filter('work')}>Zawodowe</button>
+            <button className = {props.select === 'done' ? 'active': ''} onClick={()=> props.filter('done')}>Wykonane</button>
+            <div className="list">{list()}</div>
+        </div>
      );
 }
  

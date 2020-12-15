@@ -2,21 +2,23 @@
     display: flex;
     justify-content: stretch;
     align-items: center;
-    margin: 0.5rem;
     border-bottom: dotted 1px gray;
 }
 
-.unActiveTask p:last-child {
-    flex-basis: 35%;
-    text-align: end;
-    font-size: 0.9rem;
-}
-
-.unActiveTask p:first-child {
-    flex-basis: 50%;
-    flex-grow: 1;
+.unActiveTask p{
     margin-right: 1.3rem;
     line-height: 1.5;
+    flex-basis: 33%;
+}
+
+.unActiveTask p:nth-child(1){
+    flex-grow: 1;
+    padding-left: 0.8rem;
+   
+}
+
+.unActiveTask p:nth-child(2) {
+   text-align: end;
 }
 
 .unActiveTask p span {

@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
-import './AddTask.css'
+import './AddTask.css';
+
+import { 
+    TextField, 
+    FormGroup, 
+    createMuiTheme, 
+    ThemeProvider, 
+    InputLabel, 
+    Select, 
+    MenuItem, 
+    FormControl, 
+    FormControlLabel, 
+    Checkbox 
+} from '@material-ui/core';
 
 class AddTask extends Component {
 
@@ -15,9 +28,15 @@ class AddTask extends Component {
 
      handleChange = (e) => {
 
-        const name = e.target.id;
+        const name = e.target.name;
         const type = e.target.type;
-        if (type === 'text' || type === 'textarea' || type === 'select-one' || type === 'date'){
+        console.log(type);
+        console.log(name);
+        if (type === 'text' || type === 'textarea' || type === 'date'){
+            this.setState({
+                [name]:e.target.value
+            })
+        }else if (name === 'group'){
             this.setState({
                 [name]:e.target.value
             })
@@ -48,32 +67,87 @@ class AddTask extends Component {
          
      }
 
+    
+
     render() { 
         
-        let maxDate = parseInt(new Date().toISOString().slice(0,4))+1;
-        maxDate = maxDate + '-12-31';
+        const innerTheme = createMuiTheme({
+            palette: {
+              primary: {
+                main: '#2558b1',
+              },
+            },
+         });
 
         return ( 
             <div className="form">
                  <h2>Nowe zadanie</h2>
-                 <form>
-                    <label htmlFor="title"> Tytuł zadania:</label>
-                    <input type="text" id="title" value={this.state.title} onChange={this.handleChange}></input>
-                    <label htmlFor="description"> Opis zadania:</label>
-                    <textarea id="description" rows="6" value={this.state.description} onChange={this.handleChange}></textarea>
-                    <label htmlFor="date"> Do kiedy ma być wykonane:</label>
-                    <input type="date" id="date" value={this.state.date} min={this.minDate} max={maxDate} onChange={this.handleChange}></input>
-                    <label htmlFor="group">Rodzaj zadania </label>
-                    <select value={this.state.group} id="group" onChange={this.handleChange}>
-                        <option value="personal">osobiste</option>
-                        <option value="work">zawodowe</option>
-                    </select>
-                    <label htmlFor="important"> Czy jest to wazne zadanie? 
-                    <input type="checkbox" checked={this.state.important} id="important" onChange={this.handleChange}/>
-                    </label>
-                    <button onClick={this.handleClick}>Dodaj do listy</button>
-                </form>
-            </div>
+                 <ThemeProvider theme={innerTheme}>
+                    <FormGroup>
+                        <TextField 
+                            id="outlined-textarea" 
+                            name="title"
+                            label="tytuł zadania" 
+                            variant="outlined"  
+                            type="text" 
+                            value={this.state.title} 
+                            onChange={this.handleChange}
+                        >
+                        </TextField>
+                        <br/>
+                        <TextField
+                            id="outlined-textarea"
+                            name="description"
+                            label="opis zadania"
+                            placeholder="Placeholder"
+                            multiline
+                            rows={6}
+                            variant="outlined"
+                            value={this.state.description} 
+                            onChange={this.handleChange}
+                        >
+                        </TextField>
+                        <br/>
+                        <TextField
+                            id="date"
+                            label="Termin wykonania zadania"
+                            type="date"
+                            name="date" 
+                            value={this.state.date} 
+                            onChange={this.handleChange}
+                        >
+                        </TextField>
+                        <br/>
+                        <FormControl variant="outlined">
+                            <InputLabel id="demo-simple-select-outlined-label">Grupa</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                name="group"
+                                value={this.state.group}
+                                onChange={this.handleChange}
+                                label="group"
+                            >
+                                <MenuItem value="personal">osobiste</MenuItem>
+                                <MenuItem value="work">zawodowe</MenuItem>
+                            </Select>
+                        </FormControl>        
+                        <br/>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={this.state.important}
+                                    onChange={this.handleChange}
+                                    name="important"
+                                    color="primary"
+                                />
+                            }
+                            label="wżazne"
+                        />
+                        <button variant="contained" color="primary" onClick={this.handleClick}>Dodaj zadanie</button> 
+                    </FormGroup>
+                </ThemeProvider>
+             </div>
          );
     }
 }

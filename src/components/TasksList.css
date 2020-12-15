@@ -1,19 +1,25 @@
 .list {
     position: relative;
     min-height: 80vh;
-    padding: 0.3rem 1.3rem;
     background-color:white;
-    border: none;
+    padding: 0.5rem 1.3rem;
 }
 
 .tasksList button{
-    padding: 0.7rem 1.9rem;
+    background-color: #c2d2ee;
+    color: rgb(46, 45, 45);
     font-size: 1rem;
     font-weight: bold;
+    padding: 0.9rem 2.1rem  0.5rem 0.9rem;
+    text-transform: uppercase;
     border-top-right-radius: 50px;
     border-top-left-radius: 10px;
     border: none;
-    background-color:rgb(180, 183, 189);
+    letter-spacing: 0.5px;
+}
+
+.tasksList button:hover{
+    cursor: pointer;
 }
 
 .tasksList button:focus{
@@ -38,4 +44,7 @@
     text-align: center;
     transform: translateY(-50%);
     font-size: 1.4rem;
+}
+P {
+    text-align: justify;
 }

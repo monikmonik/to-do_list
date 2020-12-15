@@ -34,7 +34,6 @@ class App extends Component {
   }
 
   showDescription = (id) => {
-    console.log('działa');
     const tasks =  [...this.state.tasks];
     tasks.forEach(task => {
       if(task.id !== id){
